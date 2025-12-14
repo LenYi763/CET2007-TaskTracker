@@ -9,7 +9,7 @@ var repo = new JsonTaskRepository("tasks.json");
 
 logger.Log("TaskTracker started");
 
-// 启动时自动加载一次（更像真实系统）
+// 启动时自动加载一次
 service.ReplaceAll(repo.Load());
 
 var menu = new ConsoleMenu(service, repo, logger);
