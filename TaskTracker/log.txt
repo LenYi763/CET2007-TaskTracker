@@ -37,3 +37,14 @@
 [2025-12-14 13:31:56] Program exited
 [2025-12-14 13:31:59] TaskTracker started
 [2025-12-14 13:31:59] Replaced all tasks. Count=4
+[2025-12-14 16:08:30] Program exited
+[2025-12-14 16:08:40] TaskTracker started
+[2025-12-14 16:08:40] Replaced all tasks. Count=4
+[2025-12-14 16:08:54] Program exited
+[2025-12-14 16:08:59] TaskTracker started
+[2025-12-14 16:08:59] Replaced all tasks. Count=4
+[2025-12-14 16:09:01] Replaced all tasks. Count=4
+[2025-12-14 16:09:01] Loaded tasks from tasks.json. Count=4
+[2025-12-14 16:09:07] Load failed: malformed JSON (tasks.json). 'a' is an invalid start of a value. Path: $[0] | LineNumber: 1 | BytePositionInLine: 2.
+[2025-12-14 16:09:07] Replaced all tasks. Count=0
+[2025-12-14 16:09:07] Loaded tasks from tasks.json. Count=0

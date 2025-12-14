@@ -5,7 +5,7 @@ using TaskTracker.UI;
 
 var logger = new Logger("log.txt");
 var service = new TaskService(logger);
-var repo = new JsonTaskRepository("tasks.json");
+var repo = new JsonTaskRepository("tasks.json", logger);
 
 logger.Log("TaskTracker started");
 
