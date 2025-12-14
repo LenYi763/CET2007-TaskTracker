@@ -12,3 +12,4 @@ D:\project\CET2007-TaskTracker\TaskTracker\obj\Debug\net10.0\refint\TaskTracker.
 D:\project\CET2007-TaskTracker\TaskTracker\obj\Debug\net10.0\TaskTracker.pdb
 D:\project\CET2007-TaskTracker\TaskTracker\obj\Debug\net10.0\TaskTracker.genruntimeconfig.cache
 D:\project\CET2007-TaskTracker\TaskTracker\obj\Debug\net10.0\ref\TaskTracker.dll
+D:\project\CET2007-TaskTracker\TaskTracker\obj\Debug\net10.0\TaskTracker.sourcelink.json
