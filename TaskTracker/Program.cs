@@ -1,5 +1,6 @@
 ﻿using TaskTracker.Models;
 using TaskTracker.Services;
+using TaskTracker.Persistence;
 
 var service = new TaskService();
 
@@ -49,4 +50,20 @@ Console.WriteLine(service.FindById(2));
 
 Console.WriteLine("\n=== Delete ID=1 ===");
 service.Delete(1);
+foreach (var t in service.GetAll()) Console.WriteLine(t);
+
+var repo = new JsonTaskRepository("tasks.json");
+
+Console.WriteLine("\n=== Save to tasks.json ===");
+var ok = repo.Save(service.ExportAll());
+Console.WriteLine(ok ? "Saved." : "Save failed.");
+
+Console.WriteLine("\n=== Clear in-memory and Load from tasks.json ===");
+service.ReplaceAll(new List<TaskItem>()); // 清空内存
+Console.WriteLine($"After clear: {service.GetAll().Count} tasks");
+
+var loaded = repo.Load();
+service.ReplaceAll(loaded);
+Console.WriteLine($"After load: {service.GetAll().Count} tasks");
+
 foreach (var t in service.GetAll()) Console.WriteLine(t);

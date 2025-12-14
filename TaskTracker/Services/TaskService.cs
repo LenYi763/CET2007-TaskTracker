@@ -7,6 +7,17 @@ public class TaskService
     private readonly List<TaskItem> _tasks = new();
 
     public IReadOnlyList<TaskItem> GetAll() => _tasks;
+    public void ReplaceAll(IEnumerable<TaskItem> tasks)
+    {
+        _tasks.Clear();
+        _tasks.AddRange(tasks);
+    }
+
+    public List<TaskItem> ExportAll()
+    {
+        return _tasks.ToList();
+    }
+
 
     public void Add(TaskItem task)
     {
