@@ -1,16 +1,20 @@
 using TaskTracker.Models;
+using TaskTracker.Logging;
 
 namespace TaskTracker.Services;
 
 public class TaskService
 {
     private readonly List<TaskItem> _tasks = new();
+    private readonly Logger? _logger;
+
 
     public IReadOnlyList<TaskItem> GetAll() => _tasks;
     public void ReplaceAll(IEnumerable<TaskItem> tasks)
     {
         _tasks.Clear();
         _tasks.AddRange(tasks);
+        _logger?.Log($"Replaced all tasks. Count={_tasks.Count}");
     }
 
     public List<TaskItem> ExportAll()
@@ -25,6 +29,7 @@ public class TaskService
             throw new ArgumentException($"Task with ID {task.Id} already exists.");
 
         _tasks.Add(task);
+        _logger?.Log($"Added task {task.Id}: {task.Title}");
     }
 
     public bool Delete(int id)
@@ -32,6 +37,7 @@ public class TaskService
         var t = _tasks.FirstOrDefault(x => x.Id == id);
         if (t == null) return false;
         _tasks.Remove(t);
+        _logger?.Log($"Deleted task {id}");
         return true;
     }
 
@@ -60,6 +66,7 @@ public class TaskService
         var t = FindById(id);
         if (t == null) return false;
         t.Status = newState;
+        _logger?.Log($"Updated status for task {id} => {newState}");
         return true;
     }
 
@@ -83,5 +90,10 @@ public class TaskService
     public void SortByPriorityBuiltIn()
     {
         _tasks.Sort((a, b) => a.Priority.CompareTo(b.Priority));
+    }
+
+    public TaskService(Logger? logger = null)
+    {
+        _logger = logger;
     }
 }

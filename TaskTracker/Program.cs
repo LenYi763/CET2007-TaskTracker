@@ -1,8 +1,11 @@
 ﻿using TaskTracker.Models;
 using TaskTracker.Services;
 using TaskTracker.Persistence;
+using TaskTracker.Logging;
 
-var service = new TaskService();
+var logger = new Logger("log.txt");
+var service = new TaskService(logger);
+logger.Log("TaskTracker started");
 
 service.Add(new TaskItem
 {
@@ -56,6 +59,7 @@ var repo = new JsonTaskRepository("tasks.json");
 
 Console.WriteLine("\n=== Save to tasks.json ===");
 var ok = repo.Save(service.ExportAll());
+logger.Log(ok ? "Saved tasks to tasks.json" : "Save failed");
 Console.WriteLine(ok ? "Saved." : "Save failed.");
 
 Console.WriteLine("\n=== Clear in-memory and Load from tasks.json ===");
@@ -64,6 +68,7 @@ Console.WriteLine($"After clear: {service.GetAll().Count} tasks");
 
 var loaded = repo.Load();
 service.ReplaceAll(loaded);
+logger.Log($"Loaded tasks from tasks.json. Count={loaded.Count}");
 Console.WriteLine($"After load: {service.GetAll().Count} tasks");
 
 foreach (var t in service.GetAll()) Console.WriteLine(t);
